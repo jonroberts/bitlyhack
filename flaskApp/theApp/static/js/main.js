@@ -16,7 +16,7 @@
       success: function(data) {
         var template = _.template("<li><a href='#<%= phrase_id %>' data-toggle='tab'><%= phrase %></a></li>");
         var content = _.template("<div class='tab-pane' id='<%= phrase_id %>'><ul class='titles'></ul></div>");
-        var title = _.template("<li><%= title %></li>");
+        var title = _.template("<li><a href='http://www.youtube.com/results?search_query=<%= title %>'><%= title %></a></li>");
 
         _.each(data, function(result) {
           $target.find('ul.nav-tabs').append(template(result));
