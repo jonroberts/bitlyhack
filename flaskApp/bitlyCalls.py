@@ -1,5 +1,3 @@
-#!/Library/Frameworks/EPD64.framework/Versions/7.1/bin/python
-
 import requests
 import json
 import settings
@@ -40,7 +38,7 @@ def getBurstingPhrases():
 	endpoint = "https://api-ssl.bitly.com/v3/realtime/bursting_phrases"
 	response = requests.get(endpoint, params = query_params)
 
-	results=[]
+	results_out=[]
 
 	data = json.loads(response.content)
 
@@ -52,8 +50,8 @@ def getBurstingPhrases():
 		results=getStoryMetaData(story_id)
 
 		out={"phrase":phrase,"top_link":phrases[i]["urls"][0],"story_id":story_id,"titles":results["titles"]}
-		results.append(out)
-	return results
+		results_out.append(out)
+	return results_out
 
 
 if __name__ == '__main__':            
