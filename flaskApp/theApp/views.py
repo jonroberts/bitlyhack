@@ -20,15 +20,13 @@ def index():
 
 @app.route('/get_phrases')
 def get_phrases():
-    results = getBurstingPhrases()
 
-    response = make_response(json.dumps(results))
-    response.headers.add("Access-Control-Allow-Origin", "*")
+    results = getBurstingPhrases()
 
     socio_results_list = []
     song_results_list = []
 
-    for each_item in response:
+    for each_item in results:
         for each_key in each_item.keys():
             if (each_key == "phrase"):
                 phrase = each_item["phrase"]
@@ -47,7 +45,9 @@ def get_phrases():
 #            elif (each_key == "titles"):
 #                url_response = each_item["titles"]
 
-    return song_results_list
+    response = make_response(json.dumps(song_results_list))
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 @app.route('/get_hot_phrases')
