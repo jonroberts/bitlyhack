@@ -11,7 +11,7 @@ def getStory(phrase):
 	data = json.loads(response.content)
 
 	return data["data"]["story_id"]
-	
+
 def getStoryMetaData(storyLink):
 
 	# We can get the following
@@ -46,10 +46,17 @@ def getBurstingPhrases():
 
 	for i in range(len(phrases)):
 		phrase=phrases[i]["phrase"]
+		phrase_id=phrases[i]["phrase"].replace(" ", "_")
 		story_id=getStory(phrase)
 		results=getStoryMetaData(story_id)
 
-		out={"phrase":phrase,"top_link":phrases[i]["urls"][0],"story_id":story_id,"titles":results["titles"]}
+		out={
+				"phrase": phrase,
+				"phrase_id": phrase_id,
+				"top_link": phrases[i]["urls"][0],
+				"story_id": story_id,
+				"titles": results["titles"]
+		}
 		results_out.append(out)
 	return results_out
 
@@ -73,11 +80,11 @@ def getHotPhrases():
 		out={"phrase":phrase,"top_link":phrases[i]["urls"][0],"story_id":story_id,"titles":results["titles"]}
 		results_out.append(out)
 	return results_out
-	
 
 
 
-if __name__ == '__main__':            
+
+if __name__ == '__main__':
 	getHotPhrases()
 
 

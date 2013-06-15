@@ -10,11 +10,26 @@
     });
   };
 
-  Site.protocol.loadPhrases = function($target) {
+  Site.prototype.loadPhrases = function($target) {
     $.ajax({
-      url: "/get_hot_phrases",
+      url: "/static/js/phrases.json",
       success: function(data) {
-        console.log(data);
+        var template = _.template("<li><a href='#<%= phrase_id %>' data-toggle='tab'><%= phrase %></a></li>");
+        var content = _.template("<div class='tab-pane' id='<%= phrase_id %>'><ul class='titles'></ul></div>");
+        var title = _.template("<li><%= title %></li>");
+
+        _.each(data, function(result) {
+          $target.find('ul.nav-tabs').append(template(result));
+          $target.find('div.tab-content').append(content(result));
+
+          _.each(result.titles, function(t) {
+            $target.find('div.tab-content #' + result.phrase_id + ' ul').append(
+              title({ title: t })
+            );
+          });
+        });
+
+        $('[data-toggle="tab"]:first').click();
       }
     });
   };
