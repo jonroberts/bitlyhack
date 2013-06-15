@@ -35,11 +35,11 @@ def dorequest(url, method, params):
     conn = httplib2.Http()
 
     headers_dict = {}
-    headers_dict["User-Agent"] = "USER AGENT HERE"
+    headers_dict["User-Agent"] = "SoundsLyke Zeitgeist Generator"
     headers_dict["Content-type"] = "application/x-www-form-urlencoded"
     headers_dict["Accept"] = "text/plain"
 
-    request_source = "User-Agent:" + headers_dict["User-Agent"]
+    request_source = "User-Agent: " + headers_dict["User-Agent"]
 
     if (method == "GET"):
         request_sent = method + " " + url + "?" + encodedparams + \

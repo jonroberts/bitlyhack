@@ -9,7 +9,7 @@ from flask import request
 import datetime
 from bitlyCalls import *
 from sociocast import get_content_profile
-from rovi import get_rovi_data
+from rovi import *
 
 
 @app.route('/')
@@ -25,29 +25,28 @@ def get_phrases():
     response = make_response(json.dumps(results))
     response.headers.add("Access-Control-Allow-Origin", "*")
 
-    socio_results_list = []
-    song_results_list = []
+    socio_results_dict = {}
 
     for each_item in response:
         for each_key in each_item.keys():
             if (each_key == "phrase"):
                 phrase = each_item["phrase"]
-
-                # Pass Sociocast results and Bit.ly phrase into Rovi to get
-                # song results
-                song_results_list.append(get_rovi_data("musicsearch", phrase))
             elif (each_key == "top_link"):
                 # Pass top URL into sociocast to get classifications
                 sociocast_url = each_item["top_link"]["aggregate_url"]
 
-                socio_results_list.append(get_content_profile(sociocast_url))
+                socio_results_dict.add(get_content_profile(sociocast_url))
 
                 # Could combine titles into unique tokens and remove
                 # stop words for additional search keywords
 #            elif (each_key == "titles"):
 #                url_response = each_item["titles"]
 
-    return song_results_list
+            # Pass Sociocast results and Bit.ly phrase into Rovi to get
+            # song results
+            
+
+    return songs_dict
 
 
 @app.route('/get_hot_phrases')
