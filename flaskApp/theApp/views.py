@@ -23,7 +23,7 @@ def get_phrases():
 	return response
 
 @app.route('/get_hot_phrases')
-def get_phrases():
+def get_hot_phrases():
 	results=getHotPhrases()
 
 	response=make_response(json.dumps(results))
