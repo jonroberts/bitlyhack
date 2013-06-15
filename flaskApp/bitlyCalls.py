@@ -53,8 +53,31 @@ def getBurstingPhrases():
 		results_out.append(out)
 	return results_out
 
+def getHotPhrases():
+	query_params = {'access_token': settings.BITLY_ACCESS_TOKEN}
+
+	endpoint = "https://api-ssl.bitly.com/v3/realtime/hot_phrases"
+	response = requests.get(endpoint, params = query_params)
+
+	results_out=[]
+
+	data = json.loads(response.content)
+
+	phrases=data["data"]["phrases"]
+
+	for i in range(len(phrases)):
+		phrase=phrases[i]["phrase"]
+		story_id=getStory(phrase)
+		results=getStoryMetaData(story_id)
+
+		out={"phrase":phrase,"top_link":phrases[i]["urls"][0],"story_id":story_id,"titles":results["titles"]}
+		results_out.append(out)
+	return results_out
+	
+
+
 
 if __name__ == '__main__':            
-	getBurstingPhrases()
+	getHotPhrases()
 
 
