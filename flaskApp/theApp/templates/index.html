@@ -6,15 +6,19 @@
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
   <body>
-  <div class="hero-unit"><div class="offset6"><h1>Sociocast</h3></div></div>
-	<div class="container-fluid"></div>
-	<div class="row-fluid"></div>
-	<div class="offset7"> <button class="btn btn-large btn-warning" type="button">What's trending?</button></div>
+    {% include "common/header.html" %}
 
+    <div class="hero-unit">
+      <div class="offset6">
+        <h1>Sociocast</h1>
+      </div>
+    </div>
+    <div class="container-fluid"></div>
+    <div class="row-fluid"></div>
+    <div class="offset7">
+      <button class="btn btn-large btn-warning" type="button">What's trending?</button>
+    </div>
 
-
-    		
-        <script src="http://code.jquery.com/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
+    {% include "common/javascripts.html" %}
   </body>
 </html>
