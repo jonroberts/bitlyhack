@@ -1,0 +1,7 @@
+ul li {
+  list-style: none;
+}
+
+[data-element='target'] {
+  display: none;
+}

@@ -4,6 +4,7 @@
     <title>Dance to the beat of your inner-sociopath.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="static/css/main.css" rel="stylesheet" media="screen">
   </head>
   <body>
     {% include "common/header.html" %}
@@ -13,12 +14,37 @@
         <h1>Bitlyopath</h1>
       </div>
     </div>
-    <div class="container-fluid"></div>
-    <div class="row-fluid"></div>
-    <div class="offset7">
-      <button class="btn btn-large btn-warning" type="button">What's trending?</button>
-    </div>
+
+    <div class="container-fluid">
+      <div class="offset7">
+        <button class="btn btn-large btn-warning" type="button" data-element="trending">
+          What's trending?
+        </button>
+      </div>
+
+      <div class="row-fluid" data-element="target">
+        <nav class="span2">
+          <ul>
+
+            <li>vjdioscjdsioc</li>
+            <li>vjdioscjdsioc</li>
+            <li>vjdioscjdsioc</li>
+            <li>vjdioscjdsioc</li>
+          </ul>
+        </nav>
+
+        <div class="span8">
+          Bl
+        </div>
+      </div><!-- end fluid -->
+
+    </div><!--end container-->
+
 
     {% include "common/javascripts.html" %}
+    <script type="text/javascript">
+      var site = new Site($("[data-element='trending']"));
+      site.loadPhrases();
+    </script>
   </body>
 </html>
