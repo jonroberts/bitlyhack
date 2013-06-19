@@ -16,6 +16,8 @@ __license__ = "Python"
 import httplib2
 import urllib
 import time
+import unicodedata
+
 #import urlparse
 
 try:
@@ -26,12 +28,16 @@ except ImportError:
 
 def dorequest(url, method, params):
     for key in params:
+
+		# handles non-standard characters and stops the parser choking on them.
+        params[key]=params[key].encode('utf-8').strip()
+
         # Remove keys with no value
         if (key is None):
             del params[key]
 
-    encodedparams = urllib.urlencode(params)
 
+    encodedparams = urllib.urlencode(params)
     conn = httplib2.Http()
 
     headers_dict = {}
@@ -51,8 +57,6 @@ def dorequest(url, method, params):
             request_source + "\nContent-type: " + \
             headers_dict["Content-type"] + "\nAccept: " + \
             headers_dict["Accept"] + "\n\n" + encodedparams
-
-    print request_sent
 
     # Keep trying until we get a successful response
     while True:

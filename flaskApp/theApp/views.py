@@ -11,7 +11,6 @@ from bitlyCalls import *
 from sociocast import get_content_profile
 from rovi import get_rovi_data
 
-
 @app.route('/')
 @app.route('/index')
 def index():
