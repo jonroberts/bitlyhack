@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, session, make_response
-from theApp import app, db
+from theApp import app #, db -- no database yet, we can uncomment this, and the db setup in __init__.py when we need to add one
 
 import json
 from tools import valueFromRequest
@@ -16,7 +16,6 @@ from rovi import get_rovi_data
 @app.route('/index')
 def index():
     return render_template("index.html")
-
 
 @app.route('/get_phrases')
 def get_phrases():
